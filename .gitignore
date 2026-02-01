@@ -1,0 +1,12 @@
+# Build folders
+[Bb]in/
+[Oo]bj/
+
+# User-specific files (Visual Studio)
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Published output
+publish/

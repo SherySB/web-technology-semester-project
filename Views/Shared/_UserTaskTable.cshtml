@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Daily_Task_Manager.Models.Data_Models.UserTask>
+
+@if (Model == null)
+{
+    <div class="text-center text-muted py-4">
+        No tasks found.
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-striped mb-0">
+        <thead class="table-primary">
+            <tr>
+                <th style="width:45%">Task</th>
+                <th style="width:20%" class="text-center">Status</th>
+                <th style="width:35%" class="text-center">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr data-task-id="@task.Id">
+                    <td>@task.Title</td>
+
+                    <td class="text-center">
+                        <span class="badge @(task.IsCompleted ? "bg-success" : "bg-warning text-dark")">
+                            @(task.IsCompleted ? "Completed" : "Pending")
+                        </span>
+                    </td>
+
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-info text-white me-1"
+                           asp-controller="Task"
+                           asp-action="Edit"
+                           asp-route-id="@task.Id">
+                            Edit
+                        </a>
+
+                        <a class="btn btn-sm btn-secondary me-1"
+                           asp-controller="Task"
+                           asp-action="Details"
+                           asp-route-id="@task.Id">
+                            Details
+                        </a>
+
+                        <button type="button"
+                                class="btn btn-sm btn-success mark-complete-btn"
+                                data-id="@task.Id"
+                                @(task.IsCompleted ? "disabled" : "")>
+                            Mark Complete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

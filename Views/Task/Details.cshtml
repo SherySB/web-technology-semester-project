@@ -1,0 +1,36 @@
+﻿@model Daily_Task_Manager.Models.Data_Models.UserTask
+
+@{
+    ViewData["Title"] = "Task Details";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Task Details</h3>
+
+        <a class="btn btn-primary btn-sm"
+           asp-controller="User"
+           asp-action="Dashboard">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <h5 class="mb-2">Task Title</h5>
+            <p>@Model.Title</p>
+
+            <h6 class="mb-1">Description:</h6>
+            <p>@Model.Description</p>
+
+            <h6 class="mb-1">Status:</h6>
+            <span class="badge @(Model.IsCompleted ? "bg-success" : "bg-warning text-dark")">
+                @(Model.IsCompleted ? "Completed" : "Pending")
+            </span>
+
+        </div>
+    </div>
+
+</div>

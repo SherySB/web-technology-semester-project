@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Daily_Task_Manager.Models.Data_Models.UserTask>
+
+@{
+    ViewData["Title"] = "All Tasks";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">All Tasks in the System</h3>
+
+        <a class="btn btn-secondary"
+           asp-controller="Admin"
+           asp-action="AdminDashboard">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <table class="table table-bordered table-striped mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width:20%">User</th>
+                        <th style="width:40%">Task</th>
+                        <th style="width:20%" class="text-center">Status</th>
+                        <th style="width:20%" class="text-center">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="allTasksContainer">
+                    <partial name="_AllTasksTable" model="Model" />
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="~/js/userDashboard.js" asp-append-version="true"></script>
+}

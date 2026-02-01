@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Daily_Task_Manager.Models.Data_Models.UserTask>
+
+@if (Model == null)
+{
+    <tr>
+        <td colspan="4" class="text-center text-muted py-3">
+            No tasks found.
+        </td>
+    </tr>
+}
+else
+{
+    foreach (var task in Model)
+    {
+        <tr>
+            <td class="text-break">
+                @task.UserId
+            </td>
+
+            <td>
+                @task.Title
+            </td>
+
+            <td class="text-center">
+                <span class="badge @(task.IsCompleted ? "bg-success" : "bg-warning text-dark")">
+                    @(task.IsCompleted ? "Completed" : "Incomplete")
+                </span>
+            </td>
+
+            <td class="text-center">
+                <button type="button"
+                        class="btn btn-sm btn-danger delete-btn"
+                        data-id="@task.Id">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    }
+}

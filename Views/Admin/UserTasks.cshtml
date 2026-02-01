@@ -1,0 +1,62 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Your Tasks";
+
+    var user = Model.User as Daily_Task_Manager.Models.Data_Models.ApplicationUser;
+    var tasks = Model.Tasks as IEnumerable<Daily_Task_Manager.Models.Data_Models.UserTask>;
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Tasks for: <span class="text-primary">@ViewBag.UserName</span></h3>
+
+        <a class="btn btn-secondary"
+           asp-controller="Admin"
+           asp-action="AdminDashboard">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <table class="table table-striped table-bordered mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width:50%">Task</th>
+                        <th style="width:50%" class="text-center">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (tasks != null && tasks.Any())
+                    {
+                        @foreach (var task in tasks)
+                        {
+                            <tr>
+                                <td>@task.Title</td>
+                                <td class="text-center">
+                                    <span class="badge @(task.IsCompleted ? "bg-success" : "bg-warning text-dark")">
+                                        @(task.IsCompleted ? "Completed" : "Pending")
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" class="text-center text-muted py-4">
+                                No tasks available for this user.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
